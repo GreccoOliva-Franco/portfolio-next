@@ -1,11 +1,9 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-export default function Technology({
+export default function TechnologyCard({
   text,
   icon,
   className = "",
@@ -25,7 +23,7 @@ export default function Technology({
           className={cn("h-10 w-10 object-fit mx-auto", className)}
         />
       </CardHeader>
-      <CardContent>
+      <CardContent className="text-center">
         <h3>{text}</h3>
       </CardContent>
     </Card>
