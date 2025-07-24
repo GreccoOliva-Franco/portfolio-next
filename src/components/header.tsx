@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LogoImage, LogoText } from "./logo";
+import { LogoText } from "./logo";
 import { Page } from "@/lib/navigation";
 import React from "react";
 import {
@@ -16,19 +16,19 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   {
     text: "Home",
-    href: "/",
+    href: Page.HOME,
   },
   {
     text: "Me",
-    href: "/about-me",
+    href: Page.ABOUT_ME,
   },
   {
     text: "Technologies",
-    href: "/technologies",
+    href: Page.TECHNOLOGIES,
   },
   {
     text: "Projects",
-    href: "/projects",
+    href: Page.PROJECTS,
   },
 ];
 
@@ -37,8 +37,7 @@ export default function Header() {
 
   return (
     <header className="flex h-fit w-full items-center justify-between  border-x-2 border-b-2 rounded-b-2xl">
-      <Link href={Page.HOME} className="p-2 flex gap-2 items-center">
-        <LogoImage />
+      <Link href={Page.HOME} className="p-4 flex gap-2 items-center">
         <LogoText />
       </Link>
 
@@ -49,11 +48,10 @@ export default function Header() {
               <NavigationMenuLink asChild>
                 <Link
                   href={link.href}
+                  data-active={pathname === link.href}
                   className={cn(
                     "font-bold",
-                    "hover:bg-green-100",
-                    pathname === link.href &&
-                      "bg-green-200 text-green-800 border-b-2 border-green-700"
+                    "data-[active=true]:border-b-3 data-[active=true]:border-green-700"
                   )}
                   prefetch={false}
                 >
