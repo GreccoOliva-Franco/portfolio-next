@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export function LogoText() {
-  return <h2 className="text-2xl font-bold">Grecco<span className="text-emerald-600">Dev</span></h2>;
+  return <h2 className="text-2xl font-bold">Grecco<span className="text-emerald-600">.Dev</span></h2>;
 }
 
 export function LogoImage() {
