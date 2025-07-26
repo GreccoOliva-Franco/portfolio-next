@@ -16,8 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GreccoDev",
-  description: "Online portfolio ",
+  title: "Grecco.Dev | Full Stack solutions",
+  description: `Grecco.Dev combines honor, ethics, and results in every project.
+    Software focused on readability, maintainability and performance
+    Specializing in JavaScript, React, Node.js, and PHP.`
 };
 
 export default function RootLayout({
