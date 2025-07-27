@@ -1,5 +1,5 @@
 import PageContent from "@/components/page-content";
-import { Title } from "@/components/texts/title";
+import Title from "@/components/texts/title";
 import ProjectTabs from "./project-tabs";
 import { Suspense } from "react";
 import { Spinner } from "@/components/ui/spinner";
