@@ -22,20 +22,24 @@ export default function ProjectCard({ project }: Props) {
         <ProjectPreview url={project.urls.preview} />
       </CardHeader>
       <CardContent className="flex-grow flex flex-col gap-4">
-        <div className="flex justify-between items-center">
-          <ProjectTechnologies technologies={project.technologies} />
-          <ProjectDificulty difficulty={project.difficulty} />
-        </div>
-
         <ProjectCardTitle text={project.title} />
         <ProjectDescription text={project.description} />
+
+        <div className="flex justify-between items-start">
+          <ProjectTechnologies technologies={project.technologies} />
+          {project?.difficulty && (
+            <ProjectDificulty difficulty={project.difficulty} />
+          )}
+        </div>
       </CardContent>
       <CardFooter className="justify-end gap-4">
-        <Button variant={"secondary"} asChild>
-          <Link href={project.urls.repository} target="_blank">
-            Github
-          </Link>
-        </Button>
+        {project.urls?.repository && (
+          <Button variant={"secondary"} asChild>
+            <Link href={project.urls.repository} target="_blank">
+              Github
+            </Link>
+          </Button>
+        )}
         <Button variant={"default"} asChild>
           <Link href={project.urls.deploy} target="_blank">
             Live Demo
@@ -70,7 +74,7 @@ function ProjectDescription({ text }: { text: string }) {
 
 function ProjectTechnologies({ technologies }: Pick<Project, "technologies">) {
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap gap-2">
       {technologies.map((tech) => (
         <span key={tech} className="text-xs bg-muted px-2 py-1 rounded">
           {tech}
