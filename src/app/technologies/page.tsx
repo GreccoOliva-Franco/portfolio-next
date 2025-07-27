@@ -1,4 +1,4 @@
-import Title from "@/components/texts/title";
+import { Title } from "@/components/texts/title";
 import PageContent from "@/components/page-content";
 import TechnologyList from "./technology-list";
 import { Suspense } from "react";
