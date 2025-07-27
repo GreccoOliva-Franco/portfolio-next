@@ -15,40 +15,9 @@ interface Props {
   project: Project;
 }
 
-function ProjectPreview({ url }: { url: string }) {
-  return (
-    <Image
-      src={url}
-      alt=""
-      width={380}
-      height={380}
-      className="aspect-video rounded-xl"
-    />
-  );
-}
-function ProjectCardTitle({ text }: { text: Project["title"] }) {
-  return <h3 className="text-2xl">{text}</h3>;
-}
-
-function ProjectDescription({ text }: { text: Project["description"] }) {
-  return <p className="text-justify">{text}</p>;
-}
-
-function ProjectTechnologies({ technologies }: Pick<Project, "technologies">) {
-  return <p>{technologies.join("  -  ")}</p>;
-}
-
-function ProjectDificulty({ difficulty }: Pick<Project, "difficulty">) {
-  return (
-    <Badge className="text-md bg-emerald-600">
-      {`${difficulty.level} - ${firstUpperCase(difficulty.label)}`}
-    </Badge>
-  );
-}
-
 export default function ProjectCard({ project }: Props) {
   return (
-    <Card>
+    <Card className="hover:shadow-xl transition-shadow">
       <CardHeader className="justify-center">
         <ProjectPreview url={project.urls.preview} />
       </CardHeader>
@@ -69,10 +38,55 @@ export default function ProjectCard({ project }: Props) {
         </Button>
         <Button variant={"default"} asChild>
           <Link href={project.urls.deploy} target="_blank">
-            Web
+            Live Demo
           </Link>
         </Button>
       </CardFooter>
     </Card>
+  );
+}
+
+function ProjectPreview({ url }: { url: string }) {
+  return (
+    <div className="aspect-video bg-muted rounded-t-lg overflow-hidden">
+      <Image
+        src={url}
+        alt=""
+        width={380}
+        height={380}
+        className="size-full object-cover"
+      />
+    </div>
+  );
+}
+
+function ProjectCardTitle({ text }: { text: string }) {
+  return <h3 className="text-lg font-semibold">{text}</h3>;
+}
+
+function ProjectDescription({ text }: { text: string }) {
+  return <p className="text-sm text-muted-foreground">{text}</p>;
+}
+
+function ProjectTechnologies({ technologies }: Pick<Project, "technologies">) {
+  return (
+    <div className="flex gap-2">
+      {technologies.map((tech) => (
+        <span key={tech} className="text-xs bg-muted px-2 py-1 rounded">
+          {tech}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ProjectDificulty({ difficulty }: Pick<Project, "difficulty">) {
+  return (
+    <Badge
+      // className="text-md bg-emerald-600"
+      className="text-xs font-medium px-2 py-1 rounded-full bg-emerald-600"
+    >
+      {`${difficulty.level} - ${firstUpperCase(difficulty.label)}`}
+    </Badge>
   );
 }
