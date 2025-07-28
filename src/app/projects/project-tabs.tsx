@@ -3,8 +3,12 @@ import { ProjectCardList } from "./project-card-list";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default async function ProjectTabs() {
-  const response = await Api.getProjects();
-  const projects = response.data;
+  let projects = [];
+
+  try {
+    const response = await Api.getProjects();
+    projects = response.data;
+  } catch {}
 
   const SIDE_PROJECTS_ID = "side-projects";
   const TRAINING_PROJECTS_ID = "training";

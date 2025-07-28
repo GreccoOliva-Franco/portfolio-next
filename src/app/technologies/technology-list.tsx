@@ -3,8 +3,12 @@ import { Api } from "@/lib/api";
 import TechnologyListClient from "./technology-list-client";
 
 export default async function TechnologyList() {
-  const response = await Api.getTechnologies();
-  const technologies = response.data;
+  let technologies = [];
+
+  try {
+    const response = await Api.getTechnologies();
+    technologies = response.data;
+  } catch {}
 
   return <TechnologyListClient technologies={technologies} />;
 }
