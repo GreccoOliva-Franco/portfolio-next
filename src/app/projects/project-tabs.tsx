@@ -24,7 +24,7 @@ const sideProjects = [
   },
 ];
 
-type SideProject = ArrayItemType<typeof sideProjects>;
+export type SideProject = ArrayItemType<typeof sideProjects>;
 
 const trainingProjects = [
   {
@@ -257,14 +257,12 @@ const trainingProjects = [
   },
 ];
 
-type TrainingProject = ArrayItemType<typeof trainingProjects>;
+export type TrainingProject = ArrayItemType<typeof trainingProjects>;
 
 const projects = {
   side: sideProjects,
   training: trainingProjects,
 };
-
-export type Project = SideProject | TrainingProject;
 
 export default async function ProjectTabs() {
   const SIDE_PROJECTS_ID = "side-projects";
@@ -277,7 +275,11 @@ export default async function ProjectTabs() {
         <TabsTrigger value={TRAINING_PROJECTS_ID}>Training</TabsTrigger>
       </TabsList>
       <TabsContent value={SIDE_PROJECTS_ID} className="w-full">
-        <ProjectCardList id={SIDE_PROJECTS_ID} projects={projects.side} />
+        <ProjectCardList
+          id={SIDE_PROJECTS_ID}
+          // @ts-expect-error SideProject type does not match TrainingProject type
+          projects={projects.side}
+        />
       </TabsContent>
       <TabsContent value="training" className="w-full">
         <ProjectCardList

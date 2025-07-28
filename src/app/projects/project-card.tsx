@@ -4,18 +4,14 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Project } from "../api/projects/route";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { firstUpperCase } from "@/lib/string";
+import { TrainingProject } from "./project-tabs";
 
-interface Props {
-  project: Project;
-}
-
-export default function ProjectCard({ project }: Props) {
+export default function ProjectCard({ project }: { project: TrainingProject }) {
   return (
     <Card className="hover:shadow-xl transition-shadow">
       <CardHeader className="justify-center">
@@ -72,7 +68,9 @@ function ProjectDescription({ text }: { text: string }) {
   return <p className="text-sm text-muted-foreground">{text}</p>;
 }
 
-function ProjectTechnologies({ technologies }: Pick<Project, "technologies">) {
+function ProjectTechnologies({
+  technologies,
+}: Pick<TrainingProject, "technologies">) {
   return (
     <div className="flex flex-wrap gap-2">
       {technologies.map((tech) => (
@@ -84,7 +82,7 @@ function ProjectTechnologies({ technologies }: Pick<Project, "technologies">) {
   );
 }
 
-function ProjectDificulty({ difficulty }: Pick<Project, "difficulty">) {
+function ProjectDificulty({ difficulty }: Pick<TrainingProject, "difficulty">) {
   return (
     <Badge
       // className="text-md bg-emerald-600"
