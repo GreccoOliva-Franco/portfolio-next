@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://grecco.dev/api",
+  baseURL: `${process.env.APP_URL}/api`,
 });
 
 export class Api {
