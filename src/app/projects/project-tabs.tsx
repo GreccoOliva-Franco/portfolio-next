@@ -5,8 +5,8 @@ import { ArrayItemType } from "@/lib/types";
 const sideProjects = [
   {
     title: "WaitIt",
-    description: "Solution for restaurants",
-    technologies: ["PHP", "Laravel"],
+    description: "A software for client notifications. No download needed.",
+    technologies: ["PHP", "Laravel", "Filament PHP"],
     urls: {
       preview: "/images/wait-it.png",
       deploy: "https://waitit.app",
