@@ -76,7 +76,7 @@ function DesktopNavigation({ pathname }: { pathname: string }) {
                 data-active={pathname === link.href}
                 className={cn(
                   "font-bold text-sm",
-                  "data-[active=true]:border-b-2 data-[active=true]:border-primary"
+                  "data-[active=true]:border-b-2 data-[active=true]:border-emerald-600"
                 )}
                 prefetch={false}
               >
@@ -104,28 +104,29 @@ function MobileNavigation({ pathname }: { pathname: string }) {
       </SheetTrigger>
       <SheetContent
         side="top"
-        className="pt-20 px-6 bg-background/95 backdrop-blur-sm"
+        className="items-end pt-20 px-6 bg-background/95 backdrop-blur-sm"
       >
         <SheetTitle className="sr-only">Navigatino Menu</SheetTitle>
-        <nav className="flex flex-col gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={closeSheet}
-              className={cn(
-                "text-2xl font-bold py-3 transition-colors",
-                "hover:text-primary focus:text-primary",
-                pathname === link.href
-                  ? "text-primary border-l-4 border-emerald-600 pl-4"
-                  : "text-foreground pl-6"
-              )}
-              prefetch={false}
-            >
-              {link.text}
-            </Link>
-          ))}
-        </nav>
+        <NavigationMenu className="justify-end">
+          <NavigationMenuList className="flex-col items-end gap-4">
+            {navLinks.map((link) => (
+              <NavigationMenuLink key={link.href} asChild>
+                <Link
+                  href={link.href}
+                  data-active={pathname === link.href}
+                  onClick={closeSheet}
+                  className={cn(
+                    "w-full font-bold text-sm text-end",
+                    "data-[active=true]:border-r-2 data-[active=true]:border-emerald-600"
+                  )}
+                  prefetch={false}
+                >
+                  {link.text.toUpperCase()}
+                </Link>
+              </NavigationMenuLink>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu>
         <SheetFooter></SheetFooter>
       </SheetContent>
     </Sheet>
