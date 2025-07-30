@@ -7,14 +7,15 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { firstUpperCase } from "@/lib/string";
-import { TrainingProject } from "./project-tabs";
+import { Project } from "./project-tabs";
+import { ImageOffIcon } from "lucide-react";
 
-export default function ProjectCard({ project }: { project: TrainingProject }) {
+export const PRIVATE_REPOSITORY = "private";
+
+export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Card className="hover:shadow-xl transition-shadow">
-      <CardHeader className="justify-center">
+      <CardHeader>
         <ProjectPreview url={project.urls.preview} />
       </CardHeader>
       <CardContent className="flex-grow flex flex-col gap-4">
@@ -23,39 +24,33 @@ export default function ProjectCard({ project }: { project: TrainingProject }) {
 
         <div className="flex justify-between items-start">
           <ProjectTechnologies technologies={project.technologies} />
-          {project?.difficulty && (
-            <ProjectDificulty difficulty={project.difficulty} />
-          )}
         </div>
       </CardContent>
-      <CardFooter className="justify-end gap-4">
-        {project.urls?.repository && (
-          <Button variant={"secondary"} asChild>
-            <Link href={project.urls.repository} target="_blank">
-              Github
-            </Link>
-          </Button>
-        )}
-        <Button variant={"default"} asChild>
-          <Link href={project.urls.deploy} target="_blank">
-            Live Demo
-          </Link>
-        </Button>
+      <CardFooter className="justify-end items-center gap-4">
+        <RepositoryButton url={project.urls?.repository} />
+        <DeployButton url={project.urls.deploy} />
       </CardFooter>
     </Card>
   );
 }
 
-function ProjectPreview({ url }: { url: string }) {
+function ProjectPreview({ url }: { url: string | null }) {
   return (
-    <div className="aspect-video bg-muted rounded-t-lg overflow-hidden">
-      <Image
-        src={url}
-        alt=""
-        width={380}
-        height={380}
-        className="size-full object-cover"
-      />
+    <div className="relative aspect-video bg-muted rounded-t-lg">
+      {url ? (
+        <Image
+          src={url}
+          alt=""
+          width={380}
+          height={380}
+          className="size-full object-cover"
+        />
+      ) : (
+        <div className="size-full flex flex-col justify-center items-center">
+          <ImageOffIcon className="size-10 text-muted-foreground" />
+          <p className="text-muted-foreground">No preview available</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -68,9 +63,7 @@ function ProjectDescription({ text }: { text: string }) {
   return <p className="text-sm text-muted-foreground">{text}</p>;
 }
 
-function ProjectTechnologies({
-  technologies,
-}: Pick<TrainingProject, "technologies">) {
+function ProjectTechnologies({ technologies }: Pick<Project, "technologies">) {
   return (
     <div className="flex flex-wrap gap-2">
       {technologies.map((tech) => (
@@ -82,13 +75,30 @@ function ProjectTechnologies({
   );
 }
 
-function ProjectDificulty({ difficulty }: Pick<TrainingProject, "difficulty">) {
+function RepositoryButton({ url }: { url: string | undefined | null }) {
+  if (!url || url === PRIVATE_REPOSITORY) {
+    return null;
+  }
+
   return (
-    <Badge
-      // className="text-md bg-emerald-600"
-      className="text-xs font-medium px-2 py-1 rounded-full bg-emerald-600"
-    >
-      {`${difficulty.level} - ${firstUpperCase(difficulty.label)}`}
-    </Badge>
+    <Button variant={"secondary"} asChild>
+      <Link href={url} target="_blank">
+        Github
+      </Link>
+    </Button>
+  );
+}
+
+function DeployButton({ url }: { url: string | null }) {
+  if (!url) {
+    return null;
+  }
+
+  return (
+    <Button variant={"default"} asChild>
+      <Link href={url} target="_blank">
+        Live Demo
+      </Link>
+    </Button>
   );
 }
