@@ -265,27 +265,22 @@ const projects = {
 };
 
 export default async function ProjectTabs() {
-  const SIDE_PROJECTS_ID = "side-projects";
-  const TRAINING_PROJECTS_ID = "training";
+  const STARRED_PROJECTS_ID = "starred-projects";
+  const ALL_PROJECTS_ID = "all-projects";
+
+  const starredProjects = projects.filter((proj) => proj.starred);
 
   return (
-    <Tabs defaultValue={SIDE_PROJECTS_ID}>
+    <Tabs defaultValue={STARRED_PROJECTS_ID}>
       <TabsList className="mb-6 self-center">
-        <TabsTrigger value={SIDE_PROJECTS_ID}>Side projects</TabsTrigger>
-        <TabsTrigger value={TRAINING_PROJECTS_ID}>Training</TabsTrigger>
+        <TabsTrigger value={STARRED_PROJECTS_ID}>Starred</TabsTrigger>
+        <TabsTrigger value={ALL_PROJECTS_ID}>All</TabsTrigger>
       </TabsList>
-      <TabsContent value={SIDE_PROJECTS_ID} className="w-full">
-        <ProjectCardList
-          id={SIDE_PROJECTS_ID}
-          // @ts-expect-error SideProject type does not match TrainingProject type
-          projects={projects.side}
-        />
+      <TabsContent value={STARRED_PROJECTS_ID} className="w-full">
+        <ProjectCardList id={STARRED_PROJECTS_ID} projects={starredProjects} />
       </TabsContent>
-      <TabsContent value="training" className="w-full">
-        <ProjectCardList
-          id={TRAINING_PROJECTS_ID}
-          projects={projects.training}
-        />
+      <TabsContent value={ALL_PROJECTS_ID} className="w-full">
+        <ProjectCardList id={ALL_PROJECTS_ID} projects={projects} />
       </TabsContent>
     </Tabs>
   );
