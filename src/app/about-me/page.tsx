@@ -1,4 +1,3 @@
-// app/about/page.tsx
 import {
   Briefcase,
   Code,
@@ -43,7 +42,7 @@ function WorkExperience() {
             WaitIt • 01/2025 - Present
           </p>
           <ul className="mt-2 list-disc list-inside text-sm space-y-1">
-            <li>Side project</li>
+            <li>A notification system for businesses that require their customers to retrieve their order on the counter</li>
           </ul>
         </div>
 
