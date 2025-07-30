@@ -1,39 +1,70 @@
 import { ProjectCardList } from "./project-card-list";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrayItemType } from "@/lib/types";
+import { PRIVATE_REPOSITORY } from "./project-card";
 
-const sideProjects = [
+const projects = [
   {
     title: "WaitIt",
-    description: "Solution for restaurants",
-    technologies: ["PHP", "Laravel"],
+    description:
+      "A web application for customer notifications. No app downloads needed.",
+    technologies: [
+      "PHP",
+      "Laravel",
+      "FilamentPHP",
+      "HTML",
+      "TailwindCSS",
+      "JS",
+    ],
+    difficulty: {
+      level: 10,
+      label: "Product",
+    },
     urls: {
       preview: "/images/wait-it.png",
       deploy: "https://waitit.app",
+      repository: null,
     },
+    starred: true,
   },
   {
     title: "Grecco.Dev",
     description: "Personal web and portfolio",
     technologies: ["NextJs", "TailwindCSS", "Shadcn UI"],
+    difficulty: {
+      level: 6,
+      label: "Product",
+    },
     urls: {
       preview: "/images/grecco-dev.png",
       deploy: "https://grecco.dev",
       repository: "https://github.com/GreccoOliva-Franco/portfolio-next",
     },
+    starred: true,
   },
-];
-
-export type SideProject = ArrayItemType<typeof sideProjects>;
-
-const trainingProjects = [
+  {
+    title: "King Tag",
+    description:
+      "Self-hosted and private solution to manage your media files without exposing them to internet in any way. Ability to add tags, create albums, etc.",
+    technologies: ["PHP", "Laravel", "FilamentPHP"],
+    difficulty: {
+      level: 8,
+      label: "Product",
+    },
+    urls: {
+      preview: null,
+      deploy: null,
+      repository: PRIVATE_REPOSITORY,
+    },
+    starred: true,
+  },
   {
     title: "E-commerce product page",
     description:
       "Interactive product page with hover animations and shopping cart interactions.",
     technologies: ["NextJs", "TailwindCSS", "Shadcn UI", "Zustand"],
     difficulty: {
-      level: "3",
+      level: 3,
       label: "intermediate",
     },
     urls: {
@@ -51,7 +82,7 @@ const trainingProjects = [
       "Responsive layout with user interaction and relevant card information.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "2",
+      level: 2,
       label: "junior",
     },
     urls: {
@@ -68,7 +99,7 @@ const trainingProjects = [
     description: "Responsive layout and naked-eye solution.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "2",
+      level: 2,
       label: "junior",
     },
     urls: {
@@ -86,7 +117,7 @@ const trainingProjects = [
       "Simple and responsive calculator. Improvised UI edge cases due to lack of design specifications.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "2",
+      level: 2,
       label: "junior",
     },
     urls: {
@@ -103,7 +134,7 @@ const trainingProjects = [
     description: "Practice Semantic HTML and responsive UI",
     technologies: ["NextJs", "TailwindCSS", "Shadcn UI"],
     difficulty: {
-      level: "2",
+      level: 2,
       label: "junior",
     },
     urls: {
@@ -120,7 +151,7 @@ const trainingProjects = [
     description: "Responsive UI with form state feedback and success screen",
     technologies: ["NextJs", "TailwindCSS", "Zod"],
     difficulty: {
-      level: "2",
+      level: 2,
       label: "junior",
     },
     urls: {
@@ -137,7 +168,7 @@ const trainingProjects = [
     description: "Form state, form validation and form feedback.",
     technologies: ["NextJs", "TailwindCSS", "React Hook Form"],
     difficulty: {
-      level: "2",
+      level: 2,
       label: "junior",
     },
     urls: {
@@ -155,7 +186,7 @@ const trainingProjects = [
       "Responsive UI with visual feedback effects on user interaction.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "1",
+      level: 1,
       label: "newbie",
     },
     urls: {
@@ -173,7 +204,7 @@ const trainingProjects = [
       "Responsive card with user interaction feedback through hover effects and text sizes.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "1",
+      level: 1,
       label: "newbie",
     },
     urls: {
@@ -190,7 +221,7 @@ const trainingProjects = [
     description: "A multi-column and responsive layout.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "1",
+      level: 1,
       label: "newbie",
     },
     urls: {
@@ -208,7 +239,7 @@ const trainingProjects = [
       "Simple card component with minimal user interaction feedback.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "1",
+      level: 1,
       label: "newbie",
     },
     urls: {
@@ -225,7 +256,7 @@ const trainingProjects = [
     description: "Basic responsive UI with image manipulation.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "1",
+      level: 1,
       label: "newbie",
     },
     urls: {
@@ -243,7 +274,7 @@ const trainingProjects = [
       "Create a dropdown menu and reuse it to build a complete FAQ component.",
     technologies: ["NextJs", "TailwindCSS"],
     difficulty: {
-      level: "1",
+      level: 1,
       label: "newbie",
     },
     urls: {
@@ -255,37 +286,30 @@ const trainingProjects = [
         "https://github.com/GreccoOliva-Franco/frontend-mentor-newbie-05",
     },
   },
-];
+]
+  // Forgot to give an ID to each project. Fixed it assigning a unique value
+  .map((project, index) => ({ ...project, id: index + 1 }))
+  .sort((first, second) => second.difficulty.level - first.difficulty.level);
 
-export type TrainingProject = ArrayItemType<typeof trainingProjects>;
-
-const projects = {
-  side: sideProjects,
-  training: trainingProjects,
-};
+export type Project = ArrayItemType<typeof projects>;
 
 export default async function ProjectTabs() {
-  const SIDE_PROJECTS_ID = "side-projects";
-  const TRAINING_PROJECTS_ID = "training";
+  const STARRED_PROJECTS_ID = "starred-projects";
+  const ALL_PROJECTS_ID = "all-projects";
+
+  const starredProjects = projects.filter((proj) => proj.starred);
 
   return (
-    <Tabs defaultValue={SIDE_PROJECTS_ID}>
+    <Tabs defaultValue={STARRED_PROJECTS_ID}>
       <TabsList className="mb-6 self-center">
-        <TabsTrigger value={SIDE_PROJECTS_ID}>Side projects</TabsTrigger>
-        <TabsTrigger value={TRAINING_PROJECTS_ID}>Training</TabsTrigger>
+        <TabsTrigger value={STARRED_PROJECTS_ID}>Starred</TabsTrigger>
+        <TabsTrigger value={ALL_PROJECTS_ID}>All</TabsTrigger>
       </TabsList>
-      <TabsContent value={SIDE_PROJECTS_ID} className="w-full">
-        <ProjectCardList
-          id={SIDE_PROJECTS_ID}
-          // @ts-expect-error SideProject type does not match TrainingProject type
-          projects={projects.side}
-        />
+      <TabsContent value={STARRED_PROJECTS_ID} className="w-full">
+        <ProjectCardList id={STARRED_PROJECTS_ID} projects={starredProjects} />
       </TabsContent>
-      <TabsContent value="training" className="w-full">
-        <ProjectCardList
-          id={TRAINING_PROJECTS_ID}
-          projects={projects.training}
-        />
+      <TabsContent value={ALL_PROJECTS_ID} className="w-full">
+        <ProjectCardList id={ALL_PROJECTS_ID} projects={projects} />
       </TabsContent>
     </Tabs>
   );

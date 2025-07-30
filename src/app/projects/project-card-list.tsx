@@ -1,11 +1,11 @@
 import ProjectCard from "./project-card";
-import { TrainingProject } from "./project-tabs";
+import { Project } from "./project-tabs";
 
 export function ProjectCardList({
   id,
   projects,
 }: Pick<React.ComponentProps<"section">, "id"> & {
-  projects: TrainingProject[];
+  projects: Project[];
 }) {
   return (
     <section
@@ -13,7 +13,7 @@ export function ProjectCardList({
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
     >
       {projects.map((project) => (
-        <ProjectCard key={project.urls.repository} project={project} />
+        <ProjectCard key={project.id} project={project} />
       ))}
     </section>
   );

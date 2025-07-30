@@ -40,10 +40,11 @@ function HeroSection() {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="block">Honor, Ethics</span>
             <span className="block mt-2">&</span>
-            <span className="text-emerald-600 block mt-2">Results</span>
+            <span className="block mt-2 text-emerald-600">Results</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Over 3 years delivering revenue and value through ethical code and leadership
+            Over 3 years delivering revenue and value through ethical code and
+            leadership
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" asChild>
@@ -76,18 +77,6 @@ function HeroSection() {
   );
 }
 
-function ValueCardTitle({ black, green }: { black: string; green: string }) {
-  return (
-    <h3 className="text-xl font-semibold mb-3">
-      {black} <span className="text-emerald-600">{green}</span>
-    </h3>
-  );
-}
-
-function ValueCardDescription({ text }: { text: string }) {
-  return <p className="text-muted-foreground">{text}</p>;
-}
-
 function ValuesSection() {
   return (
     <section id="values" className="py-20 bg-background">
@@ -113,8 +102,8 @@ function ValuesSection() {
             </div>
             <ValueCardTitle black="Proven" green="Results" />
             <ValueCardDescription
-              text="Drove 20x performance gains at Wortise and 30% operational
-              efficiency at Repuestos Ya through strategic optimization."
+              text="Reduce API response duration.
+              Increase user retention."
             />
           </Card>
 
@@ -123,15 +112,24 @@ function ValuesSection() {
               <Users className="w-8 h-8 text-primary" />
             </div>
             <ValueCardTitle black="Team" green="Leadership" />
-            <ValueCardDescription
-              text="Led 3+ developer teams across 4 organizations, mentoring while
-              delivering complex projects on schedule."
-            />
+            <ValueCardDescription text="Led and mentored small teams of developers and delivered results on schedule." />
           </Card>
         </div>
       </div>
     </section>
   );
+}
+
+function ValueCardTitle({ black, green }: { black: string; green: string }) {
+  return (
+    <h3 className="text-xl font-semibold mb-3">
+      {black} <span className="text-emerald-600">{green}</span>
+    </h3>
+  );
+}
+
+function ValueCardDescription({ text }: { text: string }) {
+  return <p className="text-muted-foreground">{text}</p>;
 }
 
 function ContactSection() {
