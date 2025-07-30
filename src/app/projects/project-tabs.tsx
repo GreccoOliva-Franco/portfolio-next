@@ -2,15 +2,29 @@ import { ProjectCardList } from "./project-card-list";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrayItemType } from "@/lib/types";
 
-const sideProjects = [
+const projects = [
   {
     title: "WaitIt",
-    description: "A software for client notifications. No download needed.",
-    technologies: ["PHP", "Laravel", "Filament PHP"],
+    description:
+      "A web application for customer notifications. No app downloads needed.",
+    technologies: [
+      "PHP",
+      "Laravel",
+      "FilamentPHP",
+      "HTML",
+      "TailwindCSS",
+      "JS",
+    ],
+    difficulty: {
+      level: 10,
+      label: "Product",
+    },
     urls: {
       preview: "/images/wait-it.png",
       deploy: "https://waitit.app",
+      repository: null,
     },
+    starred: true,
   },
   {
     title: "Grecco.Dev",
