@@ -102,7 +102,7 @@ function ValuesSection() {
             </div>
             <ValueCardTitle black="Proven" green="Results" />
             <ValueCardDescription
-              text="Reduce API response duration.
+              text="Reduce API response time.
               Increase user retention."
             />
           </Card>
@@ -149,13 +149,13 @@ function ContactSection() {
             to craft software solutions — I&apos;d love to connect.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button size="lg" variant="default" asChild>
+            <Button size="lg" asChild>
               <Link href="https://linkedin.com/in/francogrecco" target="_blank">
                 <Linkedin className="mr-2 h-4 w-4" />
                 LinkedIn
               </Link>
             </Button>
-            <Button size="lg" variant="default" asChild>
+            <Button size="lg" asChild>
               <Link
                 href="https://github.com/GreccoOliva-Franco"
                 target="_blank"
@@ -166,6 +166,7 @@ function ContactSection() {
             </Button>
             <Button
               size="lg"
+              variant={"outline"}
               asChild
               className="bg-emerald-600 text-accent hover:bg-emerald-600/90"
             >
