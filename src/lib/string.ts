@@ -4,18 +4,20 @@ class InvalidInputStringError extends Error {
   }
 }
 
-export function firstUpperCase(input: string): string {
+function validateInput(input: string): void {
   if (typeof input !== "string") {
     throw new InvalidInputStringError();
   }
+}
 
-  return input[0].toUpperCase() + input.slice(1);
+export function firstUpperCase(input: string): string {
+  validateInput(input);
+
+  return input.charAt(0).toUpperCase() + input.slice(1);
 }
 
 export function firstWordUpperCase(input: string): string {
-  if (typeof input !== "string") {
-    throw new InvalidInputStringError();
-  }
+  validateInput(input);
 
   return input.split(" ").map(firstUpperCase).join(" ");
 }
