@@ -5,7 +5,6 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import Image from "next/image";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Project } from "./project-tabs";
 import { ImageOffIcon } from "lucide-react";
@@ -82,9 +81,9 @@ function RepositoryButton({ url }: { url: string | undefined | null }) {
 
   return (
     <Button variant={"secondary"} asChild>
-      <Link href={url} target="_blank">
+      <a href={url} target="_blank" rel="noopener noreferrer">
         Github
-      </Link>
+      </a>
     </Button>
   );
 }
@@ -96,9 +95,9 @@ function DeployButton({ url }: { url: string | null }) {
 
   return (
     <Button variant={"default"} asChild>
-      <Link href={url} target="_blank">
+      <a href={url} target="_blank" rel="noopener noreferrer">
         Live Demo
-      </Link>
+      </a>
     </Button>
   );
 }

@@ -56,7 +56,7 @@ function HeroSection() {
             <Button size="lg" asChild>
               <Link href={Page.ABOUT_ME}>
                 <ScrollText className="mr-2 h-4 w-4" />
-                See My Carreer
+                See My Career
               </Link>
             </Button>
             <Button
@@ -65,10 +65,14 @@ function HeroSection() {
               className="bg-emerald-600 text-accent hover:bg-emerald-600/90"
               asChild
             >
-              <Link href="mailto:srgrecco93@gmail.com" target="_blank">
+              <a
+                href="mailto:srgrecco93@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Mail className="mr-2 h-4 w-4" />
                 Get in Touch
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
@@ -150,19 +154,24 @@ function ContactSection() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button size="lg" asChild>
-              <Link href="https://linkedin.com/in/francogrecco" target="_blank">
+              <a
+                href="https://linkedin.com/in/francogrecco"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Linkedin className="mr-2 h-4 w-4" />
                 LinkedIn
-              </Link>
+              </a>
             </Button>
             <Button size="lg" asChild>
-              <Link
+              <a
                 href="https://github.com/GreccoOliva-Franco"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Github className="mr-2 h-4 w-4" />
                 GitHub
-              </Link>
+              </a>
             </Button>
             <Button
               size="lg"
@@ -170,10 +179,14 @@ function ContactSection() {
               asChild
               className="bg-emerald-600 text-accent hover:bg-emerald-600/90"
             >
-              <Link href="mailto:srgrecco93@gmail.com" target="_blank">
+              <a
+                href="mailto:srgrecco93@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Mail className="mr-2 h-4 w-4" />
                 Email Me
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
