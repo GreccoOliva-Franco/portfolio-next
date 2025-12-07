@@ -1,6 +1,6 @@
-import ContactSection from "./_components/contact";
-import HeroSection from "./_components/hero";
-import ValuesSection from "./_components/values";
+import ContactSection from "./contact";
+import HeroSection from "./hero";
+import ValuesSection from "./values";
 
 export default function LandingPage() {
   return (
