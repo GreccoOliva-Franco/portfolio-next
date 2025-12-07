@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bun --bun next dev",
-    "build": "bun next build",
-    "start": "bun next start",
-    "lint": "bun --bun next --bun lint"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -46,7 +46,6 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^0.525.0",
     "next": "15.5.7",
-    "next-themes": "^0.4.6",
     "react": "^19.2.1",
     "react-day-picker": "^9.11.3",
     "react-dom": "^19.2.1",
