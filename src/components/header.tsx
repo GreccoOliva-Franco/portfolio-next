@@ -22,7 +22,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-const navLinks = [
+type NavigationLink = Record<"text" | "href", string>;
+const navLinks: NavigationLink[] = [
   {
     text: "Home",
     href: Page.HOME,
@@ -41,9 +42,11 @@ const navLinks = [
   },
 ];
 
+export const HEADER_HEIGHT = 80; // = to h-20
+
 export default function Header() {
   return (
-    <header className="flex h-fit w-full items-center justify-between border-x-2 border-b-2 rounded-b-2xl px-4 py-2">
+    <header className="sticky top-0 z-1 flex w-full h-20 items-center justify-between border-x-2 border-b-2 rounded-b-3xl px-6 py-2 bg-background">
       <Link href={Page.HOME} className="flex gap-2 items-center">
         <LogoText />
       </Link>
@@ -65,10 +68,15 @@ function NavigationBar() {
 }
 
 function DesktopNavigation({ pathname }: { pathname: string }) {
+  const isHomePage = pathname === Page.HOME;
+  const getNonHomePageLinks = (links: NavigationLink[]) =>
+    links.filter((link) => link.href !== Page.HOME);
+  const links = isHomePage ? getNonHomePageLinks(navLinks) : navLinks;
+
   return (
-    <NavigationMenu className="hidden md:block mr-4">
+    <NavigationMenu className="hidden md:block">
       <NavigationMenuList className="gap-4">
-        {navLinks.map((link) => (
+        {links.map((link) => (
           <NavigationMenuItem key={link.href}>
             <NavigationMenuLink asChild>
               <Link
@@ -93,7 +101,7 @@ function DesktopNavigation({ pathname }: { pathname: string }) {
 function MobileNavigation({ pathname }: { pathname: string }) {
   const [open, setOpen] = React.useState(false);
 
-  const closeSheet = React.useCallback(() => setOpen(false), [setOpen]);
+  const closeNavigation = React.useCallback(() => setOpen(false), [setOpen]);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -114,7 +122,7 @@ function MobileNavigation({ pathname }: { pathname: string }) {
                 <Link
                   href={link.href}
                   data-active={pathname === link.href}
-                  onClick={closeSheet}
+                  onClick={closeNavigation}
                   className={cn(
                     "w-full font-bold text-sm text-end",
                     "data-[active=true]:border-r-2 data-[active=true]:border-emerald-600"
